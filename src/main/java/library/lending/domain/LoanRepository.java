@@ -1,6 +1,5 @@
 package library.lending.domain;
 
-import library.catalog.domain.CopyId;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
