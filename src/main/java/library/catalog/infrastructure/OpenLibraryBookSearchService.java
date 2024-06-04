@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
 @Service
-public class OpenLibraryBookSearchService implements BookSearchService {
+class OpenLibraryBookSearchService implements BookSearchService {
     private final RestClient restClient;
 
     public OpenLibraryBookSearchService(RestClient.Builder builder) {

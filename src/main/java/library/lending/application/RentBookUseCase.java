@@ -16,6 +16,6 @@ public class RentBookUseCase {
 
     public void execute(CopyId copyId, UserId userId) {
         // TODO: ensure rented copy is not rented again
-        loanRepository.save(new Loan(copyId, userId));
+        loanRepository.save(new Loan(copyId, userId, loanRepository));
     }
 }
