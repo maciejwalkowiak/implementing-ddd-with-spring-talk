@@ -40,4 +40,11 @@ public class Loan {
         this.createdAt = LocalDateTime.now();
         this.expectedReturnDate = LocalDate.now().plusDays(30);
     }
+
+    public void returned() {
+        this.returnedAt = LocalDateTime.now();
+        if (this.returnedAt.isAfter(expectedReturnDate.atStartOfDay())) {
+            // calculate fee
+        }
+    }
 }
