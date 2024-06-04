@@ -14,4 +14,16 @@ public class Book {
         this.title = title;
         this.isbn = isbn;
     }
+
+    public BookId getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Isbn getIsbn() {
+        return isbn;
+    }
 }
