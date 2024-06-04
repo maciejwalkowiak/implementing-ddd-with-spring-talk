@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.0'
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'library'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '21'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+    set('springModulithVersion', "1.2.0-RC1")
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.modulith:spring-modulith-starter-core'
+    implementation 'org.springframework.modulith:spring-modulith-starter-jpa'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    implementation 'commons-validator:commons-validator:1.8.0'
+
+    implementation 'org.javamoney:moneta:1.4.4'
+    implementation 'io.hypersistence:hypersistence-utils-hibernate-63:3.7.5'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.modulith:spring-modulith-bom:${springModulithVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
