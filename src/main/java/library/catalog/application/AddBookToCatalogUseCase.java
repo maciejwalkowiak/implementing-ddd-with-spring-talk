@@ -1,11 +1,11 @@
 package library.catalog.application;
 
+import library.UseCase;
 import library.catalog.domain.Book;
 import library.catalog.domain.BookRepository;
 import library.catalog.domain.Isbn;
-import org.springframework.stereotype.Service;
 
-@Service
+@UseCase
 public class AddBookToCatalogUseCase {
     private final BookSearchService bookSearchService;
     private final BookRepository bookRepository;
