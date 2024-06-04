@@ -6,13 +6,14 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Version;
+import org.springframework.data.domain.AbstractAggregateRoot;
 import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-public class Loan {
+public class Loan extends AbstractAggregateRoot<Loan> {
     @EmbeddedId
     private LoanId loanId;
     @Embedded
@@ -39,6 +40,7 @@ public class Loan {
         this.userId = userId;
         this.createdAt = LocalDateTime.now();
         this.expectedReturnDate = LocalDate.now().plusDays(30);
+        this.registerEvent(new LoanCreated(this.copyId));
     }
 
     public void returned() {
@@ -46,5 +48,6 @@ public class Loan {
         if (this.returnedAt.isAfter(expectedReturnDate.atStartOfDay())) {
             // calculate fee
         }
+        this.registerEvent(new LoanClosed(this.copyId));
     }
 }

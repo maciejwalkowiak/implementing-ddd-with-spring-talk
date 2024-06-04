@@ -16,6 +16,7 @@ public class Copy {
     private BookId bookId;
     @Embedded
     private BarCode barCode;
+    private boolean available;
 
     Copy() {
     }
@@ -26,5 +27,14 @@ public class Copy {
         this.id = new CopyId();
         this.bookId = bookId;
         this.barCode = barCode;
+        this.available = true;
+    }
+
+    public void makeUnavailable() {
+        this.available = false;
+    }
+
+    public void makeAvailable() {
+        this.available = true;
     }
 }
